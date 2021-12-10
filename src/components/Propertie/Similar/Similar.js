@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
@@ -8,10 +8,8 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import BedIcon from "@mui/icons-material/Bed";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import HouseSidingIcon from "@mui/icons-material/HouseSiding";
-import DateRangeIcon from "@mui/icons-material/DateRange";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -20,7 +18,7 @@ import Select from "@mui/material/Select";
 import { makeStyles } from "@mui/styles";
 import { CardActionArea } from "@mui/material";
 import styles from "../../../assets/jss/components/Similar";
-import House from "../../../assets/img/House.png";
+import Result from "../Result/Result";
 
 const useStyles = makeStyles(styles);
 
@@ -32,32 +30,34 @@ function Similar({
   setInfo,
   info,
 }) {
-  console.log(tipo);
+  const propiedades = [...propiedadesRent, ...propiedadesBuy];
   const classes = useStyles();
   const [busqueda, setBusqueda] = useState("");
-  const [resultadoBuy, setResultadoBuy] = useState([]);
-
-  console.log(busqueda);
+  const [resultadoBusqueda, setResultadoBusqueda] = useState([]);
+  const [resultado, setResultado] = useState(false);
 
   const handleChange = (e) => {
     setBusqueda(e.target.value);
     filtrarBuy(e.target.value, tipo);
+    if (e.target.value === "") {
+      setResultado(false);
+    } else {
+      setResultado(true);
+    }
   };
 
   const filtrarBuy = (terminoBusqueda, tipo) => {
-    var resultadosBusqueda = propiedadesBuy.filter((elemento) => {
+    var resultadosBusqueda = propiedades.filter((elemento) => {
       if (
         elemento[tipo]
           .toString()
           .toLowerCase()
           .includes(terminoBusqueda.toLowerCase())
       ) {
-        console.log(elemento);
         return elemento;
       }
     });
-    setResultadoBuy(resultadosBusqueda);
-    console.log(resultadosBusqueda);
+    setResultadoBusqueda(resultadosBusqueda);
   };
 
   return (
@@ -103,74 +103,11 @@ function Similar({
           </FormControl>
         </Box>
       </Box>
+      {resultado ? (
+        <Result setInfo={setInfo} resultadoBusqueda={resultadoBusqueda} />
+      ) : null}
       <Box className={classes.cardContainer}>
-        {resultadoBuy.map((propiedad) => (
-          <Card
-            onClick={() => {
-              setInfo(propiedad);
-            }}
-            className={classes.card}
-            xs={2}
-          >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="336"
-                image={propiedad.src}
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h3" component="div">
-                  {propiedad.name}
-                </Typography>
-                <Box className={classes.icons}>
-                  <Box className={classes.icon}>
-                    <BathtubIcon sx={{ color: "black" }} />
-                    <Typography
-                      sx={{
-                        fontSize: 17,
-                        fontWeight: 400,
-                        lineHeight: "22px",
-                        color: "black",
-                      }}
-                    >
-                      {propiedad.bathroom}
-                    </Typography>
-                  </Box>
-                  <Box className={classes.icon}>
-                    <SquareFootIcon sx={{ color: "black" }} />
-                    <Typography
-                      sx={{
-                        fontSize: 17,
-                        fontWeight: 400,
-                        lineHeight: "22px",
-                        color: "black",
-                      }}
-                    >
-                      {propiedad.mts}
-                    </Typography>
-                  </Box>
-                  <Box className={classes.icon}>
-                    <HouseSidingIcon sx={{ color: "black" }} />
-                    <Typography
-                      sx={{
-                        fontSize: 17,
-                        fontWeight: 400,
-                        lineHeight: "22px",
-                        color: "black",
-                      }}
-                    >
-                      {propiedad.slot}
-                    </Typography>
-                  </Box>
-                </Box>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        ))}
-      </Box>
-      <Box className={classes.cardContainer}>
-        {propiedadesRent.map((propiedad) => (
+        {propiedades.map((propiedad) => (
           <Card
             sx={{ minWidth: "33%" }}
             onClick={() => {

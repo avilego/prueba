@@ -37,7 +37,7 @@ const Navbar = (teme) => ({
   wwu: {
     backgroundColor: "#FFAC12!important",
     borderRadius: "0px 18px 0px 0px!important",
-    padding: "10px 30px!important",
+    padding: "25px 35px!important",
   },
   text: {
     fontSize: "17px!important",

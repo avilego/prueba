@@ -48,6 +48,7 @@ const Similar = () => ({
     width: "100%",
     display: "flex",
     overflow: "overlay",
+    margin: "10px 0px",
   },
 });
 

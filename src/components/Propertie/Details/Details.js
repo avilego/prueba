@@ -39,7 +39,7 @@ function Details({ info }) {
                 color: "black",
               }}
             >
-              {info.bedrooms}
+              {info ? info.bedrooms : "2"}
             </Typography>
           </Box>
           <Box className={classes.icon}>
@@ -52,7 +52,7 @@ function Details({ info }) {
                 color: "black",
               }}
             >
-              {info.bathroom}
+              {info ? info.bathroom : "3"}
             </Typography>
           </Box>
           <Box className={classes.icon}>
@@ -65,7 +65,7 @@ function Details({ info }) {
                 color: "black",
               }}
             >
-              {info.mts}
+              {info ? info.mts : "200"}
             </Typography>
           </Box>
           <Box className={classes.icon}>
@@ -78,7 +78,7 @@ function Details({ info }) {
                 color: "black",
               }}
             >
-              {info.slots}
+              {info ? info.slot : "3"}
             </Typography>
           </Box>
           <Box className={classes.icon}>
@@ -91,7 +91,7 @@ function Details({ info }) {
                 color: "black",
               }}
             >
-              {info.year}
+              {info ? info.year : "1994"}
             </Typography>
           </Box>
         </Box>

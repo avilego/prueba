@@ -67,7 +67,6 @@ function Navbar() {
           >
             <IconButton
               size="large"
-              aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -107,13 +106,13 @@ function Navbar() {
               display: { xs: "none", md: "flex" },
             }}
           >
-            {pages.map((page) => (
+            {pages.map((page2) => (
               <Button
-                key={page}
+                key={page2}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {page2}
               </Button>
             ))}
             <Button

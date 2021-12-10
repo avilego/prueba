@@ -2,14 +2,9 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import styles from "../../assets/jss/components/Footer";
 
 const useStyles = makeStyles(styles);
@@ -23,11 +18,26 @@ function Footer() {
         sx={{
           display: "inline-block",
           width: "100%",
-          height: 400,
-          marginTop: "60px",
+          height: "auto",
+          marginTop: "30px",
         }}
         className={classes.footer}
-      ></Box>
+      >
+        <Box className={classes.name}>
+          <Typography variant="h3" color="white" textAlign="center">
+            Make your dreams a reality
+          </Typography>
+          <Button
+            className={classes.wwu}
+            sx={{ my: 2, color: "black", display: "inline-flex" }}
+          >
+            <Typography className={classes.text} textAlign="center">
+              Work with us
+            </Typography>
+            <ArrowRightAltIcon sx={{ color: "white", my: "auto" }} />
+          </Button>
+        </Box>
+      </Box>
     </Container>
   );
 }

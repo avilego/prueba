@@ -4,12 +4,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import styles from "../../assets/jss/components/Propertie";
-import { makeStyles, styled } from "@mui/styles";
+import { makeStyles } from "@mui/styles";
 import House from "../../assets/img/House.png";
 import Contact from "./Contact/Contact";
 import Details from "./Details/Details";
 import Similar from "./Similar/Similar";
-import Footer from "./../Footer/Footer";
 import axios from "axios";
 
 const useStyles = makeStyles(styles);
@@ -26,7 +25,6 @@ function Propertie(props) {
       .get(`https://api.mocklets.com/p68140/rent/properties`)
       .then((response) => {
         setPropiedadesRent(response.data);
-        console.log(propiedadesRent);
       })
       .catch((error) => {
         console.log(error);
@@ -38,7 +36,6 @@ function Propertie(props) {
       .get(`https://api.mocklets.com/p68140/buy/properties`)
       .then((response) => {
         setPropiedadesBuy(response.data);
-        console.log(propiedadesBuy);
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +66,7 @@ function Propertie(props) {
       <Box
         sx={{
           width: "80%",
-          height: 400,
+          height: "auto",
           marginLeft: "auto",
           marginRight: "auto",
           marginTop: "60px",
